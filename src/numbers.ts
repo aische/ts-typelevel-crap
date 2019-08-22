@@ -5,7 +5,7 @@ type Add_<A, B> =
     A extends Zero ? {result: B} :
     A extends Succ<infer R> ? {result: Add_<R, Succ<B>>['result'] } : never
 
-type Add<A, B> =
+export type Add<A, B> =
     A extends any ?
     B extends any ?
     Add_<A, B>['result']
@@ -16,14 +16,14 @@ type Mult_<A, B, Result> =
     A extends Zero ? {result: Result} :
     A extends Succ<infer R> ? {result: Mult_<R, B, Add<B, Result>>['result'] } : never
 
-type Mult<A, B> =
+export type Mult<A, B> =
     A extends any ?
     B extends any ?
     Mult_<A, B, Zero>['result']
     : never
     : never
 
-type Less_<A, B> =
+export type Less_<A, B> =
     B extends Zero
         ? {result: false}
         : A extends Zero
